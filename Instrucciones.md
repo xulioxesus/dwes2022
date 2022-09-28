@@ -15,3 +15,7 @@ Se ha añadido la línea 11
 
 Reiniciamos apache:
     sudo service apache2 restart
+
+Crear json en el apartado depuración de Code
+
+Depurar el script actual añadiendo un punto de interrupción.
