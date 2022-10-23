@@ -80,3 +80,67 @@ Prueba con los mismos ejemplos que en el apartado anterior además de estos nuev
 > ¿Qué pasa si le damos valor a los atributos sin pasar por setSrc() y setBorder(), por ejemplo `$this->border = "asdsa"`? (haz la prueba y contesta la pregunta con un comentario multilínea en el mismo fichero)
 
 > Deja los atributos de la clase como protected y verifica con varios ejemplos cómo ahora que no se pueden modificar los atributos desde fuera de la clase obligándonos a establecer esos valores mediante las interfaces de acceso setSrc y SetBorder.
+
+## Herencia
+
+Crea dos clases, **Articulo** y **ArticuloRebajado** que será una subclase de Articulo.
+
+### Clase Articulo
+
+En un fichero llamado "Articulo.php" y contendrá dos atributos protegidos **nombre** y **precio**.
+
+- El constructor recibirá como parámetros obligatorios pNombre y pPrecio y le asignará dichos valores a sus correspondientes atributos.
+
+- Implementar el método `__toString()` que devuelva la siguiente cadena:
+
+`'Nombre:'.$this->nombre.'<br />'.'Precio:'.$this->precio.'&euro;<br />";`
+
+- **getPrecio** que devuelva el valor actual del precio.
+
+- **setPrecio($pPrecio)** que compruebe si la variable $pPrecio es un valor numérico y si es así, se lo asigne al atributo **precio** de la clase **Articulo**.
+
+### Clase ArticuloRebajado
+
+En un fichero "ArticuloRebajado.php".
+
+Define la clase ArticuloRebajado.
+
+Declaralaa como **final** (no se podrá heredar de ella) y será hija de la clase ** Articulo**.
+
+Esta clase contendrá:
+
+- Un atributo privado llamado `$rebaja`.
+
+- El constructor por defecto que recibe como parámetros obligatorios `$pNombre`, `$pPrecio` y `$pRebaja`. Dentro de dicho constructor habrá que llamar al constructor del padre para darle valor a nombre y precio. Después le daremos valor al atributo rebaja.
+
+
+- Un método privado llamado calculaDescuento() que nos devuelve el precio por la rebaja dividido por 100.
+
+- Un método público llamado precioRebajado() que nos devuelve la diferencia entre el precio y el descuento.
+
+- El método `__toString()` que nos devuelve:
+    - Lo que nos devuelve el método `__toString()` de la clase padre Articulo (habrá que realizar una llamada explícita al método __toString() del padre)
+
+    - Junto con la cadena `'La rebaja es: ' . $this->rebaja . ' %';`
+    
+    - Por último `'El descuento es '. self::calculaDescuento(). '€';`
+
+### Pruebas
+
+En un fichero TestArticulo.php
+
+Después de definir la clase **ArticuloRebajado** crea una instancia de la misma con los parámetros: nombre='Bicicleta', precio=352.10 y rebaja=20.
+
+Imprime con un echo el objeto y en la siguiente línea esta cadena "El precio del artículo rebajado es" concatenado con la función que nos devuelve el valor del precio rebajado junto el signo del euro y un salto de línea. Debajo de esa línea muestra en formato preformateado de HTML lo que devuelve la función var_dump() del objeto creado anteriormente.
+
+El resultado tiene que ser el siguiente:
+
+    Nombre: Bicicleta
+    Precio: 352.10 €
+    La rebaja es: 20%
+    El descuento es: 70.42 €
+    El precio del articulo rebajado es 281.68 €
+    object(ArticuloRebajado)[1]
+        private 'rebaja' => int 20
+        protected 'nombre' => string 'Bicicleta' (length=9)
+        protected 'precio' => float 352.1
