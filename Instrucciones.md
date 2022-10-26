@@ -1,7 +1,7 @@
 Instalar PHP Extension Pack en VsCode
 
 Editar el fichero
-    sudo vim /etc/php/7.4/apache2/php.ini
+    sudo nano /etc/php/7.4/apache2/php.ini
 
 El final del fichero debe quedar:
     # BEGIN ANSIBLE MANAGED BLOCK
